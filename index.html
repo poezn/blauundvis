@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>BlauUndVis</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Michael Porath">
+	<link href='http://fonts.googleapis.com/css?family=Arvo:regular,bold' rel='stylesheet' type='text/css'>
+	<script src="protovis-3.2/protovis-r3.2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="3rd-party/modernizr-1.6.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" charset="utf-8" src="http://ajax.cdnjs.com/ajax/libs/raphael/1.5.2/raphael-min.js"></script> -->
+	<!-- <script type="text/javascript" charset="utf-8" src="http://ajax.cdnjs.com/ajax/libs/graphael/0.4.1/g.raphael-min.js"></script> -->
+	<script src="3rd-party/dateformat.js" type="text/javascript" charset="utf-8"></script>
+	<script src="data/2003,04/matches.js" type="text/javascript" charset="utf-8"></script>
+	
+	<link rel="stylesheet" href="styles.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+<div id="header">
+	<img src="icons/1.png" height="100" />
+	<div id="title">
+		<h1><span style="color: #339ebe">Blau</span><span style="color: gray">Und</span><span style="color: white">Vis</span></h1>
+		<div id="tagline">
+			Visualizing FC Zurich league matches
+		</div>
+	</div>
+	<div id="seasonsel">
+		<span>Season: </span>
+		<form action="change_season" id="change_season" method="get" accept-charset="utf-8">
+			<select id="season">
+				<option value="2003,04">2003/2004</option>
+				<option value="2005,06">2005/2006</option>
+			</select>
+		</form>
+	</div>
+</div>
+<div id="filters">
+	<div id="teamlist">
+		<h2>Opponents</h2>
+		<ul></ul>
+		<div class="clear"></div>
+	</div>
+	<div id="playerlist">
+		<h2>Players</h2>
+		<h3>Goalie</h3>
+		<ul id="goalie"></ul>
+		<div class="clear"></div>
+		<h3>Defense</h3>
+		<ul id="defense"></ul>
+		<div class="clear"></div>
+		<h3>Midfield</h3>
+		<ul id="midfield"></ul>
+		<div class="clear"></div>
+		<h3>Offense</h3>
+		<ul id="offense"></ul>
+		<div class="clear"></div>
+	</div>
+</div>
+<div id="viz">
+
+</div>
+<script src="script.js" type="text/javascript" charset="utf-8"></script>
+<div id="footer">
+	a visualization by <a href="http://michaelporath.com" target="_blank">Michael Porath</a> – Data from <a href="http://www.dbfcz.ch" target="_blank">dbFCZ</a> - <a href="#" id="showlegend">Show legend</a>
+
+	<div id="legend">
+		<h2>Legend</h2>
+		<img src="legend/1.png" id="legendpic"/>
+		<a href="#" id="next">next</a>
+		<a href="#" id="previous">previous</a>
+		<a href="#" id="close">close</a>
+	</div>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10238340-5");
+pageTracker._trackPageview();
+} catch(err) {}</script>			
+</body>
+</html>

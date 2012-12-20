@@ -1,0 +1,1 @@
+{"1": "FCZ", "9": "Young Boys", "10": "Thun", "11": "Basel", "12": "St. Gallen", "13": "Grasshoppers", "14": "Schaffhausen", "15": "Neuch\u00e2tel Xamax", "16": "Yverdon", "17": "Aarau"}
