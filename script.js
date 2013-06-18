@@ -87,13 +87,14 @@ $(document).ready(function() {
             .visible(true)
                 .top(50)
                 .text(function(d) { return (this.index < 2) ? d : d + 'min'; })
-            
-    var panels = new pv.Panel();
-    vis.add(panels);
-    
-    panels.add(pv.Panel)
-        .data(matches)
-        .top(function(d) { return 45 + this.index % 18 * 35; })
+
+    // var panels = pv.Panel;
+    // vis.add(panels);
+
+    var panels = vis.add(pv.Panel)
+        .data(matches);
+        
+    panels.top(function(d) { return 45 + this.index % 18 * 35; })
         .left(function() { return this.index >= 18 ? 350 : 0; })
         .width(330)
         .height(30)
@@ -249,7 +250,6 @@ $(document).ready(function() {
     ;
 
     function drawVis(matches) {
-
         // create date
         matches.map(function(d) {
             var strDate = d.date;
@@ -308,29 +308,24 @@ $(document).ready(function() {
 
 
     // Player list
-    $('a.player').live({
-        mouseover: function() {
-           selectedPlayer = $(this).data('id');
-           vis.render();
-        },
-        mouseout: function() {
-            selectedPlayer = 0;
-            vis.render();
-        }
+    $(document).on("mouseover", 'a.player', function() {
+       selectedPlayer = $(this).data('id');
+       vis.render();
     });
-    
-    // Player list
-    $('a.team').live({
-        mouseover: function() {
-           selectedTeam = $(this).data('id');
-           vis.render();
-        },
-        mouseout: function() {
-            selectedTeam = 0;
-            vis.render();
-        }
+    $(document).on("mouseout", 'a.player', function() {
+        selectedPlayer = 0;
+       vis.render();
     });
-    
+        
+    $(document).on("mouseover", 'a.team', function() {
+        selectedTeam = $(this).data('id');
+        vis.render();
+    });
+    $(document).on("mouseout", 'a.team', function() {
+        selectedTeam = 0;
+        vis.render();
+    });
+        
     loadPlayerAndTeams('2003,04');
     
     function highlightPlayer(id) {
@@ -353,35 +348,35 @@ $(document).ready(function() {
     
     
     function loadPlayerAndTeams(season) {
-        $.getScript('data/' + season + '/matches.js');
-        console.log(matches);
-        
-        $('#playerlist ul').empty();
-        $.getJSON('./data/' + season + '/players.js', function(data) {
-            players = data;
-            for (var id in data) {
-                player = data[id];
-                if (player.team == 1) {
-                    var position = getPosition(id, season);
-                    var a = $('<a class="player" href="#">' + player.name + '</a>').data('id', id);
-                    $('<li></li>').append(a).appendTo('#playerlist #' + position);
+        $.getJSON('./data/' + season + '/matches.js', function(matches) {
+            $('#playerlist ul').empty();
+            $.getJSON('./data/' + season + '/players.js', function(data) {
+                players = data;
+                for (var id in data) {
+                    player = data[id];
+                    if (player.team == 1) {
+                        var position = getPosition(id, season);
+                        var a = $('<a class="player" href="#">' + player.name + '</a>').data('id', id);
+                        $('<li></li>').append(a).appendTo('#playerlist #' + position);
+                    }
                 }
-            }
-        });
+            });
 
-    
-        $('#teamlist ul').empty();
-        $.getJSON('./data/' + season + '/teams.js', function(data) {
-            for (var id in data) {
-                team = data[id];
-                if (id != 1) {
-                    var a = $('<a class="team" href="#"><img src="icons/' + id + '.png"/><span class="teamname">' + team + '</span></a>').data('id', id);
-                    $('<li></li>').append(a).appendTo('#teamlist ul');
+
+            $('#teamlist ul').empty();
+            $.getJSON('./data/' + season + '/teams.js', function(data) {
+                for (var id in data) {
+                    team = data[id];
+                    if (id != 1) {
+                        var a = $('<a class="team" href="#"><img src="icons/' + id + '.png"/><span class="teamname">' + team + '</span></a>').data('id', id);
+                        $('<li></li>').append(a).appendTo('#teamlist ul');
+                    }
                 }
-            }
+            });
+
+            drawVis(matches);
         });
         
-        drawVis(matches);
     }
 
 });

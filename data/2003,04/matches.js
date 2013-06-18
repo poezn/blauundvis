@@ -1,4 +1,4 @@
-var matches = [{
+[{
     "yellow_cards": [{
         "player": 904,
         "reason": "Foul",
@@ -6935,4 +6935,4 @@ var matches = [{
     "goals_away": 1,
     "red_cards": [],
     "id": 51
-}];
+}]

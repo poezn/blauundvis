@@ -1,4 +1,4 @@
-var matches = [{
+[{
     "yellow_cards": [{
         "player": 10,
         "minute": 2
